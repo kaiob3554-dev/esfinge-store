@@ -1,144 +1,98 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#050D2A">
-<title>ESFINGE STORE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esfinge Store</title>
 
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- background:#050D2A;
- color:#f4f5ff;
- font-family:Arial,sans-serif;
+* {
+  box-sizing: border-box;
 }
-header{
- text-align:center;
- padding:35px 15px 28px;
- background:radial-gradient(circle,#102c67,#050D2A 75%);
- border-bottom:1px solid #3420a0;
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: #050b20;
+  color: white;
+  font-family: Arial, sans-serif;
 }
-.logo{
- width:75px;height:75px;
- margin:auto auto 15px;
- border:3px solid #7024F5;
- border-radius:50%;
- display:flex;align-items:center;
- justify-content:center;
- color:#08C9FF;
- font-size:45px;
- text-shadow:0 0 15px #08C9FF;
- box-shadow:0 0 25px #7024F5;
+
+header {
+  text-align: center;
+  padding: 30px 10px;
+  border-bottom: 2px solid #7024f5;
+  margin-bottom: 25px;
 }
-h1{
- margin:0;
- font-size:34px;
- letter-spacing:3px;
- color:#08C9FF;
- text-shadow:0 0 18px #087FEA;
+
+header h1 {
+  color: #08c9ff;
+  font-size: 32px;
+  text-shadow: 0 0 12px #087fea;
 }
-.subtitle{
- color:#b5c9ff;
- letter-spacing:3px;
- font-size:14px;
+
+header p {
+  color: #b7a0ff;
 }
-.status{
- color:#bd8cff;
- font-size:13px;
+
+h2 {
+  color: #08c9ff;
 }
-main{
- max-width:950px;
- margin:auto;
- padding:20px 14px;
+
+.search {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #7024f5;
+  border-radius: 10px;
+  background: #101a38;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 16px;
 }
-.search{
- width:100%;
- padding:15px;
- border:1px solid #087FEA;
- border-radius:12px;
- background:#0b1940;
- color:white;
- font-size:16px;
- outline:none;
+
+.category {
+  border: 1px solid #7024f5;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 22px;
+  background: #0b1530;
+  box-shadow: 0 0 12px #35116c;
 }
-.search:focus{border-color:#08C9FF}
-.filters{
- display:flex;
- gap:9px;
- overflow-x:auto;
- padding:16px 0;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
-.filter{
- white-space:nowrap;
- padding:10px 16px;
- border-radius:20px;
- border:1px solid #7024F5;
- background:#10183c;
- color:#d8c9ff;
- cursor:pointer;
+
+th {
+  color: #08c9ff;
+  text-align: left;
+  border-bottom: 1px solid #7024f5;
 }
-.filter.active{
- background:linear-gradient(100deg,#087FEA,#7024F5);
- color:white;
+
+th, td {
+  padding: 12px 7px;
+  border-bottom: 1px solid #26345b;
 }
-.section{
- margin:15px 0;
- border:1px solid #263b83;
- border-radius:13px;
- overflow:hidden;
- background:#091633;
- box-shadow:0 0 15px #087FEA18;
+
+td {
+  color: #eee;
 }
-.section h2{
- margin:0;
- padding:15px;
- background:linear-gradient(100deg,#102b65,#28115c);
- color:#08C9FF;
- font-size:18px;
+
+button {
+  background: linear-gradient(90deg, #087fea, #7024f5);
+  color: white;
+  border: none;
+  padding: 9px 12px;
+  border-radius: 7px;
+  cursor: pointer;
 }
-.table-wrap{overflow-x:auto}
-table{
- width:100%;
- min-width:430px;
- border-collapse:collapse;
-}
-th,td{
- padding:14px 11px;
- text-align:left;
- border-bottom:1px solid #1c315e;
-}
-th{
- color:#a9aaff;
- font-size:12px;
- text-transform:uppercase;
-}
-.price{
- color:#08C9FF;
- font-weight:bold;
- white-space:nowrap;
-}
-.copy{
- background:linear-gradient(100deg,#087FEA,#7024F5);
- color:white;
- border:0;
- border-radius:7px;
- padding:8px 12px;
- cursor:pointer;
-}
-.empty{
- display:none;
- text-align:center;
- padding:30px;
- color:#aab9e9;
-}
-footer{
- text-align:center;
- padding:25px;
- color:#8296c9;
- font-size:12px;
- border-top:1px solid #25205c;
+
+footer {
+  text-align: center;
+  color: #08c9ff;
+  padding: 25px 5px;
 }
 </style>
 </head>
@@ -146,171 +100,116 @@ footer{
 <body>
 
 <header>
-<div class="logo">△</div>
-<h1>ESFINGE</h1>
-<div class="subtitle">S T O R E</div>
-<p class="status">✦ CATÁLOGO OFICIAL ✦</p>
+  <h1>ESFINGE STORE</h1>
+  <p>Catálogo Online</p>
 </header>
 
-<main>
-
 <input
- class="search"
- id="search"
- placeholder="⌕ Pesquisar produtos..."
+  class="search"
+  id="search"
+  type="text"
+  placeholder="Pesquisar produtos..."
+  oninput="filterProducts()"
 >
-
-<nav class="filters" id="filters"></nav>
 
 <div id="catalog"></div>
 
-<div class="empty" id="empty">
-Nenhum produto encontrado.
-</div>
-
-</main>
-
 <footer>
-ESFINGE STORE © 2026
-<br><br>
-TECNOLOGIA • QUALIDADE • PREÇO 
+  ESFINGE STORE • SEMPRE ONLINE
 </footer>
 
 <script>
-
-// EDITE SEUS PRODUTOS AQUI
-
 const products = [
-{
- category:"Balas RJ LABS",
- name:"🌐GOOGLE 350mg+
-🥃ROYAL SALUT 360mg
-🎰BEAT 350mg+ 
-🍌BANANA DUTCH 350mg
-🧔🏼‍♂️PABLO ESCOBAR 350mg
-🍄COGUMELO 350mg 
-🔫GLOCK 350mg 
-🐂RED BULL 350mg 
-⚗️ BREAKING BAD 350mg 
-🅱️BYD AZUL/ROSA 320mg 
-🍓 MORANGO 320mg ",
- detail:"Descrição do produto",
- price:"R$ 00,00"
-},
-{
- category:"Categoria 1",
- name:"",
- detail:"Descrição do produto",
- price:"R$ 00,00"
-},
-{
- category:"Categoria 2",
- name:"Produto exemplo 3",
- detail:"Descrição do produto",
- price:"R$ 00,00"
-},
-{
- category:"Categoria 2",
- name:"Produto exemplo 4",
- detail:"Descrição do produto",
- price:"R$ 00,00"
-}
+  {
+    category: "Mídias",
+    name: "Item 01",
+    description: "Descrição do item",
+    price: "R$ 00,00"
+  },
+  {
+    category: "Mídias",
+    name: "Item 02",
+    description: "Descrição do item",
+    price: "R$ 00,00"
+  },
+  {
+    category: "Mídias",
+    name: "Item 03",
+    description: "Descrição do item",
+    price: "R$ 00,00"
+  },
+  {
+    category: "Outros",
+    name: "Produto exemplo",
+    description: "Descrição do produto",
+    price: "R$ 00,00"
+  }
 ];
 
-let active="Todos";
+function renderProducts(list) {
+  const catalog = document.getElementById("catalog");
+  catalog.innerHTML = "";
 
-const filters=document.getElementById("filters");
-const catalog=document.getElementById("catalog");
-const search=document.getElementById("search");
-const empty=document.getElementById("empty");
+  const categories = [...new Set(list.map(p => p.category))];
 
-function safe(text){
- return String(text).replace(/[&<>"']/g,c=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",
- '"':"&quot;","'":"&#39;"
- }[c]));
+  categories.forEach(category => {
+    const items = list.filter(p => p.category === category);
+
+    let html = `
+      <section class="category">
+        <h2>${category}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+    `;
+
+    items.forEach(item => {
+      html += `
+        <tr>
+          <td>${item.name}</td>
+          <td>${item.description}</td>
+          <td>${item.price}</td>
+          <td>
+            <button onclick="copyItem('${item.name}', '${item.price}')">
+              Copiar
+            </button>
+          </td>
+        </tr>
+      `;
+    });
+
+    html += "</tbody></table></section>";
+    catalog.innerHTML += html;
+  });
 }
 
-function renderFilters(){
- const categories=["Todos",...new Set(products.map(p=>p.category))];
+function filterProducts() {
+  const search = document.getElementById("search").value.toLowerCase();
 
- filters.innerHTML=categories.map(c=>
- `<button class="filter ${active===c?"active":""}" data-cat="${safe(c)}">${safe(c)}</button>`
- ).join("");
+  const filtered = products.filter(p =>
+    (p.name + p.category + p.description)
+      .toLowerCase()
+      .includes(search)
+  );
 
- filters.querySelectorAll("button").forEach(btn=>{
- btn.onclick=()=>{
- active=btn.dataset.cat;
- renderFilters();
- renderCatalog();
- };
- });
+  renderProducts(filtered);
 }
 
-function renderCatalog(){
- const q=search.value.toLowerCase().trim();
-
- const visible=products.filter(p=>
- (active==="Todos"||p.category===active)&&
- [p.name,p.detail,p.price,p.category]
- .join(" ").toLowerCase().includes(q)
- );
-
- const groups=[...new Set(visible.map(p=>p.category))];
-
- catalog.innerHTML=groups.map(category=>{
- const items=visible.filter(p=>p.category===category);
-
- return `
- <section class="section">
- <h2>✦ ${safe(category)}</h2>
- <div class="table-wrap">
- <table>
- <thead>
- <tr>
- <th>Produto</th>
- <th>Detalhes</th>
- <th>Valor</th>
- <th>Ação</th>
- </tr>
- </thead>
- <tbody>
- ${items.map(p=>`
- <tr>
- <td>${safe(p.name)}</td>
- <td>${safe(p.detail)}</td>
- <td class="price">${safe(p.price)}</td>
- <td><button class="copy" data-copy="${safe(p.name+" - "+p.price)}">Copiar</button></td>
- </tr>
- `).join("")}
- </tbody>
- </table>
- </div>
- </section>
- `;
- }).join("");
-
- empty.style.display=visible.length?"none":"block";
-
- catalog.querySelectorAll(".copy").forEach(btn=>{
- btn.onclick=async()=>{
- try{
- await navigator.clipboard.writeText(btn.dataset.copy);
- btn.textContent="Copiado!";
- setTimeout(()=>btn.textContent="Copiar",1200);
- }catch(e){
- btn.textContent="Erro";
- }
- };
- });
+function copyItem(name, price) {
+  navigator.clipboard.writeText(name + " - " + price)
+    .then(() => alert("Copiado!"))
+    .catch(() => alert("Não foi possível copiar."));
 }
 
-search.addEventListener("input",renderCatalog);
-
-renderFilters();
-renderCatalog();
-
+renderProducts(products);
 </script>
+
 </body>
 </html>
-
