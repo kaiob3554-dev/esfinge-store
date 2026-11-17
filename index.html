@@ -1,1 +1,99 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esfinge Store</title>
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+background:#0d0914;
+color:white;
+font-family:Arial,sans-serif;
+}
+header{
+text-align:center;
+padding:35px 15px;
+background:linear-gradient(135deg,#241036,#10091b);
+border-bottom:1px solid #8b35c9;
+}
+h1{color:#d69aff;font-size:32px;margin:0}
+header p{color:#c6afd8}
+.status{color:#d69aff;font-size:13px}
+main{max-width:850px;margin:auto;padding:20px 14px}
+input{
+width:100%;padding:14px;
+border-radius:10px;
+border:1px solid #62358a;
+background:#1b1226;color:white;
+font-size:16px;
+}
+h2{color:#d69aff;font-size:19px}
+.section{
+background:#191122;
+border:1px solid #42265b;
+border-radius:12px;
+margin-top:20px;
+overflow:hidden;
+}
+.section h2{padding:12px 15px;margin:0;background:#28163a}
+table{width:100%;border-collapse:collapse}
+td,th{padding:13px 10px;text-align:left;border-bottom:1px solid #352341}
+th{color:#cda1ed;font-size:12px}
+.price{color:#e0b2ff;font-weight:bold}
+button{
+background:#672b91;color:white;
+border:0;border-radius:7px;
+padding:8px 11px;
+}
+footer{text-align:center;color:#9985aa;padding:30px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>ESFINGE STORE</h1>
+<p>CATÁLOGO ONLINE</p>
+<div class="status">✦ SEMPRE ONLINE — CHAMA NO PV</div>
+</header>
+<main>
+<input id="search" placeholder="Pesquisar produtos..." oninput="filtrar()">
+
+<div id="catalogo">
+<section class="section">
+<h2>Categoria 1</h2>
+<table>
+<tr><th>Produto</th><th>Valor</th><th>Ação</th></tr>
+<tr><td>Produto exemplo</td><td class="price">R$ 00,00</td><td><button onclick="copiar('Produto exemplo')">Copiar</button></td></tr>
+</table>
+</section>
+<section class="section">
+<h2>Categoria 2</h2>
+<table>
+<tr><th>Produto</th><th>Valor</th><th>Ação</th></tr>
+<tr><td>Produto exemplo 2</td><td class="price">R$ 00,00</td><td><button onclick="copiar('Produto exemplo 2')">Copiar</button></td></tr>
+</table>
+</section>
+</div>
+</main>
+<footer>ESFINGE STORE © 2026</footer>
+<script>
+function copiar(texto){
+navigator.clipboard.writeText(texto)
+.then(()=>alert("Copiado!"))
+.catch(()=>alert("Não foi possível copiar."));
+}
+function filtrar(){
+let busca=document.getElementById("search").value.toLowerCase();
+document.querySelectorAll("tbody tr").forEach(linha=>{
+linha.style.display=linha.innerText.toLowerCase().includes(busca)?"":"none";
+});
+document.querySelectorAll(".section").forEach(secao=>{
+let linhas=secao.querySelectorAll("tbody tr");
+secao.style.display=[...linhas].some(l=>l.style.display!=="none")?"":"none";
+});
+}
+</script>
+</body>
+</html>
