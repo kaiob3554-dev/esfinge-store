@@ -3,17 +3,15 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Esfinge Store</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  padding: 20px;
+  padding: 18px;
   background: #050b20;
   color: white;
   font-family: Arial, sans-serif;
@@ -21,24 +19,18 @@ body {
 
 header {
   text-align: center;
-  padding: 30px 10px;
+  padding: 28px 10px;
   border-bottom: 2px solid #7024f5;
   margin-bottom: 25px;
 }
 
 header h1 {
   color: #08c9ff;
-  font-size: 32px;
-  text-shadow: 0 0 12px #087fea;
+  font-size: 30px;
+  text-shadow: 0 0 14px #087fea;
 }
 
-header p {
-  color: #b7a0ff;
-}
-
-h2 {
-  color: #08c9ff;
-}
+header p { color: #b7a0ff; }
 
 .search {
   width: 100%;
@@ -47,17 +39,22 @@ h2 {
   border-radius: 10px;
   background: #101a38;
   color: white;
-  margin-bottom: 20px;
   font-size: 16px;
+  margin-bottom: 20px;
 }
 
 .category {
+  background: #0b1530;
   border: 1px solid #7024f5;
   border-radius: 12px;
   padding: 15px;
   margin-bottom: 22px;
-  background: #0b1530;
   box-shadow: 0 0 12px #35116c;
+}
+
+.category h2 {
+  color: #08c9ff;
+  text-shadow: 0 0 8px #087fea;
 }
 
 table {
@@ -68,7 +65,6 @@ table {
 th {
   color: #08c9ff;
   text-align: left;
-  border-bottom: 1px solid #7024f5;
 }
 
 th, td {
@@ -76,23 +72,23 @@ th, td {
   border-bottom: 1px solid #26345b;
 }
 
-td {
-  color: #eee;
-}
-
 button {
-  background: linear-gradient(90deg, #087fea, #7024f5);
+  background: linear-gradient(90deg,#087fea,#7024f5);
   color: white;
   border: none;
-  padding: 9px 12px;
   border-radius: 7px;
-  cursor: pointer;
+  padding: 9px 12px;
 }
 
 footer {
   text-align: center;
   color: #08c9ff;
   padding: 25px 5px;
+}
+
+@media(max-width:480px) {
+  body { padding: 10px; }
+  th, td { padding: 9px 4px; font-size: 12px; }
 }
 </style>
 </head>
@@ -101,15 +97,14 @@ footer {
 
 <header>
   <h1>ESFINGE STORE</h1>
-  <p>Catálogo Online</p>
+  <p>CATÁLOGO ONLINE</p>
 </header>
 
 <input
   class="search"
   id="search"
-  type="text"
-  placeholder="Pesquisar produtos..."
-  oninput="filterProducts()"
+  placeholder="Pesquisar..."
+  oninput="render()"
 >
 
 <div id="catalog"></div>
@@ -121,94 +116,84 @@ footer {
 <script>
 const products = [
   {
-    category: "Mídias",
+    category: "MÍDIAS",
     name: "Item 01",
     description: "Descrição do item",
     price: "R$ 00,00"
   },
   {
-    category: "Mídias",
+    category: "MÍDIAS",
     name: "Item 02",
     description: "Descrição do item",
     price: "R$ 00,00"
   },
   {
-    category: "Mídias",
+    category: "OUTROS",
     name: "Item 03",
     description: "Descrição do item",
-    price: "R$ 00,00"
-  },
-  {
-    category: "Outros",
-    name: "Produto exemplo",
-    description: "Descrição do produto",
     price: "R$ 00,00"
   }
 ];
 
-function renderProducts(list) {
-  const catalog = document.getElementById("catalog");
-  catalog.innerHTML = "";
-
-  const categories = [...new Set(list.map(p => p.category))];
-
-  categories.forEach(category => {
-    const items = list.filter(p => p.category === category);
-
-    let html = `
-      <section class="category">
-        <h2>${category}</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Produto</th>
-              <th>Descrição</th>
-              <th>Preço</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-    `;
-
-    items.forEach(item => {
-      html += `
-        <tr>
-          <td>${item.name}</td>
-          <td>${item.description}</td>
-          <td>${item.price}</td>
-          <td>
-            <button onclick="copyItem('${item.name}', '${item.price}')">
-              Copiar
-            </button>
-          </td>
-        </tr>
-      `;
-    });
-
-    html += "</tbody></table></section>";
-    catalog.innerHTML += html;
-  });
-}
-
-function filterProducts() {
-  const search = document.getElementById("search").value.toLowerCase();
+function render() {
+  const search = document
+    .getElementById("search")
+    .value.toLowerCase();
 
   const filtered = products.filter(p =>
     (p.name + p.category + p.description)
-      .toLowerCase()
-      .includes(search)
+      .toLowerCase().includes(search)
   );
 
-  renderProducts(filtered);
+  const categories = [...new Set(
+    filtered.map(p => p.category)
+  )];
+
+  document.getElementById("catalog").innerHTML =
+    categories.map(category => {
+      const items = filtered.filter(
+        p => p.category === category
+      );
+
+      return `
+        <section class="category">
+          <h2>${category}</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items.map(p => `
+                <tr>
+                  <td>${p.name}</td>
+                  <td>${p.description}</td>
+                  <td>${p.price}</td>
+                  <td>
+                    <button onclick="copyText('${p.name}')">
+                      Copiar
+                    </button>
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </section>
+      `;
+    }).join("");
 }
 
-function copyItem(name, price) {
-  navigator.clipboard.writeText(name + " - " + price)
+function copyText(text) {
+  navigator.clipboard.writeText(text)
     .then(() => alert("Copiado!"))
     .catch(() => alert("Não foi possível copiar."));
 }
 
-renderProducts(products);
+render();
 </script>
 
 </body>
